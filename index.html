@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0b0b0b;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+section {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.2s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+.final {
+  flex-direction: column;
+}
+
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  padding: 14px 26px;
+  font-size: 1rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+.yes {
+  background: #ffffff;
+  color: #000;
+}
+
+.no {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.heart {
+  position: fixed;
+  color: red;
+  font-size: 20px;
+  animation: float 2s linear forwards;
+}
+
+@keyframes float {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section>
+  <div class="fade">
+    <h1>Hey…</h1>
+    <p style="margin-top:15px;">I made something just for you.</p>
+    <p style="margin-top:30px; opacity:0.6;">Swipe down ↓</p>
+  </div>
+</section>
+
+<section>
+  <div class="fade">
+    <p>
+      I never planned this.<br><br>
+      You just walked into my life…<br>
+      and suddenly everything felt different.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="fade">
+    <p>
+      The little moments.<br>
+      The smiles.<br>
+      The comfort of you.<br><br>
+      It all started to feel like home.
+    </p>
+  </div>
+</section>
+
+<section class="final">
+  <div class="fade">
+    <h2>So…</h2>
+    <h1 style="margin-top:15px;">Will you be mine forever?</h1>
+
+    <div class="buttons">
+      <button class="yes" onclick="yesClicked()">YES 💖</button>
+      <button class="no" onclick="yesClicked()">YES 😌</button>
+    </div>
+  </div>
+</section>
+
+<script>
+const faders = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+faders.forEach(fade => observer.observe(fade));
+
+function yesClicked() {
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.bottom = '0px';
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 2000);
+  }
+}
+</script>
+
+</body>
+</html>
